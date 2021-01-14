@@ -5,6 +5,10 @@ This is the repository for the dashboard I have created in an attempt to visuali
 ### Note
 I'll add code for the laboratory tests and cases soon, it needs cleaning first :)
 
+## Dashboard
+
+[covid19.shanehastings.eu](http://covid19.shanehastings.eu/)
+
 ## Data Available
 
 - Cases
