@@ -1,6 +1,15 @@
-# Ignore everything
-*
+# Ignore these dev folders
+.idea/
+api/
+assets/
+assets-home/
+cases/
+giveback/
 
-# Except
-!.gitignore
 !vaccines/
+# These files
+app.yaml
+chart.png
+index.html
+social.png
+error_log.txt
