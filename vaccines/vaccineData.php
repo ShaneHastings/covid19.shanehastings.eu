@@ -6,9 +6,24 @@
  *  https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/country_data/Ireland.csv
  */
 
+/* Disable error reporting on production */
+$url =  "{$_SERVER['HTTP_HOST']}";
+$escaped_url = htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' );
+
+if ($escaped_url == "covid19.shanehastings.eudev"){
+    echo "Development.";
+} else {
+    error_reporting(0);
+    @ini_set('display_errors', 0);
+}
+
 /* Vaccine Data Sources */
 
 $ourWorldInData_Ireland = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/country_data/Ireland.csv";
+$geoHiveVaccineAPI = "https://services-eu1.arcgis.com/z6bHNio59iTqqSUY/arcgis/rest/services/Covid19_Vaccine_Administration_Data/FeatureServer/0/query?where=1%3D1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=*&returnGeometry=true&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pjson&token=";
+
+/* Grab data from geohive once to prevent multiple requests */
+$globalGeoHiveDataArray = getGeoHiveData();
 
 /* Grab data from github once to prevent multiple requests. */
 $globalVaccineDataArray = getVaccineDataFromCSV();
@@ -17,8 +32,12 @@ function getVaccineDataFromCSV()
 {
     global $ourWorldInData_Ireland;
     $csv = array();
+    /* Try grab the file from GitHub. If it fails, throw an error. */
     $file = fopen($ourWorldInData_Ireland, 'r');
-
+    if ( !$file ) {
+        echo "<h1>Data source unavailable. Try again later.</h1><br>Data source: " . $ourWorldInData_Ireland;
+        die();
+    }
     while (($result = fgetcsv($file)) !== false) {
         $csv[] = $result;
     }
@@ -79,6 +98,66 @@ function getChartVaccinationDates()
         echo date('M-d', strtotime($vaccineDates[1]));;
         echo "',";
     }
+}
+
+
+/*  Grabbing the latest data from the COVID-19 GeoHive Data Hub (what a mouthful, eh?)
+ *  As of January 14th, they only provide total vaccination statistics. Daily data comes on stream from
+ *  January 25th according to Stephen Donnelly on Twitter.
+ */
+
+function getGeoHiveData(){
+
+    global $geoHiveVaccineAPI;
+    $geohiveDataJson = file_get_contents($geoHiveVaccineAPI);
+    $geoHiveDataObject = json_decode($geohiveDataJson, true);
+
+    return $geoHiveDataObject;
+}
+
+
+/*  Sort through the GeoHive data array and extract the daily vaccination totals.
+ */
+function getGeoHiveFirstDoseTotals(){
+
+    global $globalGeoHiveDataArray;
+
+    /* Find the key of the last element, which will be the most recent data. */
+    $sizeOfFeaturesArray = sizeof($globalGeoHiveDataArray['features']);
+    $keyOfLatestData = $sizeOfFeaturesArray - 1;
+
+    /* Long variable names suck, but at least they make sense. */
+    $totalNumberFirstDoseAdministered =  $globalGeoHiveDataArray['features'][$keyOfLatestData]['attributes']['total_number_of_1st_dose_admini'];
+    return $totalNumberFirstDoseAdministered;
+}
+
+/*  Sort through the GeoHive data array and extract the daily vaccination totals date.
+ */
+function getGeoHiveFirstDoseTotalsDate(){
+
+    global $globalGeoHiveDataArray;
+
+    /* Find the key of the last element, which will be the most recent data. */
+    $sizeOfFeaturesArray = sizeof($globalGeoHiveDataArray['features']);
+    $keyOfLatestData = $sizeOfFeaturesArray - 1;
+
+    /* Long variable names suck, but at least they make sense. */
+    $dateOfTotalNumberFirstDoseAdministered =  $globalGeoHiveDataArray['features'][$keyOfLatestData]['attributes']['data_relevent_up_to_date'];
+    $convertedDate = timestampToDate($dateOfTotalNumberFirstDoseAdministered);
+
+    return $convertedDate;
+}
+
+/*  Converts UNIX timestamp returned by GeoHive source and returns in format YYYY-MM-DD.
+ *
+ */
+function timestampToDate($timestamp)
+{
+    // Remove the last three digits, because they are useless to us.
+    $strippedTimestamp = substr($timestamp, 0, -3);
+    // Format in YYYY-MM-DD
+    $date = date('Y-m-d', $strippedTimestamp);
+    return $date;
 }
 
 
