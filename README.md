@@ -2,14 +2,17 @@
 
 This is the repository for the dashboard I have created in an attempt to visualise some of the data available on the COVID-19 Data Hub, as well as Our World in Data (for vaccines).
 
-**Data Available**
+### Note
+I'll add code for the laboratory tests and cases soon, it needs cleaning first :)
+
+## Data Available
 
 - Cases
 - Laboratory tests
 - Vaccines
 
 
-**Sources**
+## Sources
 
 | Data             | Source            | URL                                                                                        |
 |------------------|-------------------|--------------------------------------------------------------------------------------------|
