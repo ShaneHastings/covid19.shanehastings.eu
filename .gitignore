@@ -6,7 +6,6 @@ assets-home/
 cases/
 giveback/
 
-!vaccines/
 # These files
 app.yaml
 chart.png
