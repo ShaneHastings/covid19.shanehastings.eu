@@ -1,0 +1,15 @@
+{
+  "name": "COVID-19 Data IE",
+  "short_name": "COVID Data IE",
+  "lang": "en-IE",
+  "start_url": "https://covid19.shanehastings.eu/?pwa",
+  "display": "standalone",
+  "theme_color": "#FFEF10",
+  "icons": [
+    {
+      "src": "https://covid19.shanehastings.eu/assets/pwa/app_icon_512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
