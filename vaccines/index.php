@@ -366,6 +366,7 @@ $currentDate =  date('Y-m-d');
 <div class="footer-basic" style="background-color: #f0f0f0">
     <footer>
         <ul class="list-inline">
+            <li class="list-inline-item"><a  data-toggle="tooltip" title="Changes to attributes will be made as more data becomes available. Be warned!" href="/vaccines/json/"><i class="fas fa-code"></i> Vaccine Data as JSON</a></li>
             <li class="list-inline-item"><a
                         href="https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations"
                         target="_blank"><i class="fas fa-database"></i> Data Source</a></li>
