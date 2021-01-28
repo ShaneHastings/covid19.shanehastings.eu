@@ -12,7 +12,7 @@ $vaccineData = getLatestVaccineData();
 // 40000/4,977,400*100 calculate rate per 100
 
 $populationIreland = 4977400;
-$vaccinationRatePer100 = ((getGeoHiveFirstDoseTotals()/$populationIreland)*100);
+$vaccinationRatePer100 = ((getGeoHiveTotalVaccinations()/$populationIreland)*100);
 
 $currentDate =  date('Y-m-d');
 
@@ -196,7 +196,7 @@ $currentDate =  date('Y-m-d');
                         <!-- Card content -->
                         <div class="card-body">
                             <!-- Title -->
-                            <h6 class="card-title">Total vaccinations given </h6>
+                            <h6 class="card-title">First dose vaccinations </h6>
                             <!-- Text -->
                             <p class="card-text red-text"><i class="fas fa-chart-line fa-2x"></i><span class="ml-2" style="font-size: 30px;"><?php echo number_format(getGeoHiveFirstDoseTotals()); ?></span>
                             </p>
@@ -209,10 +209,10 @@ $currentDate =  date('Y-m-d');
                         <!-- Card content -->
                         <div class="card-body">
                             <!-- Title -->
-                            <h6 class="card-title">Vaccinations per 100 people</h6>
+                            <h6 class="card-title">Second dose vaccinations</h6>
                             <!-- Text -->
-                            <p class="card-text green-text"><i class="fas fa-user-shield fa-2x"></i><span class="ml-2"
-                                                                                                          style="font-size: 30px;"><?php echo round($vaccinationRatePer100, 2); ?></span>/100
+                            <p class="card-text green-text"><i class="fas fa-chart-line fa-2x"></i><span class="ml-2"
+                                                                                                          style="font-size: 30px;"><?php echo number_format(getGeoHiveSecondDoseTotals()); ?></span>
                             </p>
                         </div>
                         <!-- Card content -->
@@ -230,10 +230,10 @@ $currentDate =  date('Y-m-d');
                         <!-- Card content -->
                         <div class="card-body">
                             <!-- Title -->
-                            <h6 class="card-title">Vaccines given today</h6>
+                            <h6 class="card-title">Vaccinations per 100 people</h6>
                             <!-- Text -->
                             <p class="card-text blue-text"><i class="fas fa-calendar-day fa-2x"></i><span class="ml-2"
-                                                                                                          style="font-size: 30px;">n/a</span>
+                                                                                                          style="font-size: 30px;"><?php echo round($vaccinationRatePer100, 2); ?></span>/100
                             </p>
                         </div>
                         <!-- Card content -->
@@ -244,10 +244,10 @@ $currentDate =  date('Y-m-d');
                         <!-- Card content -->
                         <div class="card-body">
                             <!-- Title -->
-                            <h6 class="card-title">People fully vaccinated</h6>
+                            <h6 class="card-title">Total vaccinations</h6>
                             <!-- Text -->
                             <p class="card-text red-text"><i class="fas fa-syringe fa-2x"></i></i><span class="ml-2"
-                                                                                                        style="font-size: 30px;">n/a</span>
+                                                                                                        style="font-size: 30px;"><?php echo number_format(getGeoHiveTotalVaccinations()); ?></span>
                             </p>
                         </div>
                         <!-- Card content -->
@@ -261,39 +261,6 @@ $currentDate =  date('Y-m-d');
 
         </div>
 
-
-
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="text-muted card-subtitle mb-2">Vaccines administered by manufacturer<br></h6>
-                        <p class="card-text">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Vaccine</th>
-                                <th>Amount Administered</th>
-                                <th>Date</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td><?php echo $vaccineData['vaccineType']; ?></td>
-                                <td><?php echo number_format($vaccineData['vaccinesGiven']); ?></td>
-                                <td><?php echo date('d M Y', strtotime($vaccineData['date'])); ?></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <b>Source: </b>Our World in Data.
-                        </p>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <br>
         <div class="row">
             <div class="col">
                 <div class="card">
@@ -301,6 +268,7 @@ $currentDate =  date('Y-m-d');
                         <h6 class="text-muted card-subtitle mb-2">Total vaccines administered by date reported<br></h6>
                         <p class="card-text">
                             <canvas id="VaccinationsByDate"></canvas>
+                            <b>Source:</b> Our World in Data
                         </p>
                     </div>
                 </div>
