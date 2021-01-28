@@ -260,7 +260,7 @@ $currentDate =  date('Y-m-d');
 
 
         </div>
-
+        <!-- Ireland Vaccine Tracker Chart -->
         <div class="row">
             <div class="col">
                 <div class="card">
@@ -274,8 +274,27 @@ $currentDate =  date('Y-m-d');
                 </div>
             </div>
         </div>
+        <!-- Ireland Vaccine Tracker Chart End -->
+
 
         <br>
+
+        <!-- Our World in Data | EU Chart -->
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="text-muted card-subtitle mb-2">Vaccinations per 100 people in the European Union</h6>
+
+                        <iframe src="https://ourworldindata.org/grapher/covid-vaccination-doses-per-capita?tab=chart&stackMode=absolute&time=latest&country=AUT~BEL~BGR~HRV~CYP~CZE~DNK~EST~European%20Union~FIN~FRA~DEU~GRC~HUN~ISL~IRL~ITA~LVA~LUX~MLT~NLD~POL~PRT~ROU~SVK~SVN~ESP~SWE&region=World" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Our World in Data | EU Chart End -->
+        <br>
+
+        <!-- Vaccine Tracker -->
         <div class="row">
             <div class="col">
                 <div class="card">
@@ -294,7 +313,9 @@ $currentDate =  date('Y-m-d');
                 </div>
             </div>
         </div>
+        <!-- Vaccine Tracker End-->
 
+        <br>
 
     </div> <!-- container end -->
 </div>
