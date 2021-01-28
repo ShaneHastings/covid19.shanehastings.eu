@@ -230,9 +230,9 @@ $currentDate =  date('Y-m-d');
                         <!-- Card content -->
                         <div class="card-body">
                             <!-- Title -->
-                            <h6 class="card-title">Vaccinations per 100 people</h6>
+                            <h6 class="card-title" style="text-underline-position: under; text-decoration:underline; text-decoration-style: dotted;" data-toggle="tooltip" title="Based on Irish population of <?php echo number_format($populationIreland); ?> from the CSO's April 2020 estimate.">Vaccinations per 100 people</h6>
                             <!-- Text -->
-                            <p class="card-text blue-text"><i class="fas fa-calendar-day fa-2x"></i><span class="ml-2"
+                            <p class="card-text blue-text"><i class="fas fa-user-shield fa-2x"></i><span class="ml-2"
                                                                                                           style="font-size: 30px;"><?php echo round($vaccinationRatePer100, 2); ?></span>/100
                             </p>
                         </div>
@@ -361,7 +361,11 @@ $currentDate =  date('Y-m-d');
     </footer>
 </div>
 
-
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
 </body>
