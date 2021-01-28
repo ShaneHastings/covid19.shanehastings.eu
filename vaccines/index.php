@@ -354,9 +354,9 @@ $currentDate =  date('Y-m-d');
             <li class="list-inline-item"><a href="https://twitter.com/ShaneHastingsIE"><i class="fab fa-twitter"></i>
                     Contact</a></li>
         </ul>
-        <p class="copyright">Vaccine data sourced from <b><a style="text-decoration: none; color: #4b4c4d"
+        <p class="copyright">Vaccine data for graph sourced from <b><a style="text-decoration: none; color: #4b4c4d"
                                                              href="https://ourworldindata.org/covid-vaccinations">Our
-                    World in Data</a></b>'s open data sources on GitHub. Total vaccination data sourced from COVID-19 Data Hub.<br>
+                    World in Data</a></b>'s open data sources on GitHub. Other vaccination data sourced from COVID-19 Data Hub and the EMA.<br>
             Vaccinations per 100 people based on Irish population of <?php echo number_format($populationIreland); ?> from the <a href="https://www.cso.ie/en/releasesandpublications/er/pme/populationandmigrationestimatesapril2020/">CSO's April 2020 estimate</a>.</p>
     </footer>
 </div>
