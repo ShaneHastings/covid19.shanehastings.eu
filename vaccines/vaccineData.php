@@ -11,7 +11,7 @@ $url =  "{$_SERVER['HTTP_HOST']}";
 $escaped_url = htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' );
 
 if ($escaped_url == "covid19.shanehastings.eudev"){
-    echo "Development.";
+    //echo "Development.";
 } else {
     error_reporting(0);
     @ini_set('display_errors', 0);
@@ -20,7 +20,9 @@ if ($escaped_url == "covid19.shanehastings.eudev"){
 /* Vaccine Data Sources */
 
 $ourWorldInData_Ireland = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/country_data/Ireland.csv";
-$geoHiveVaccineAPI = "https://services-eu1.arcgis.com/z6bHNio59iTqqSUY/arcgis/rest/services/Covid19_Vaccine_Administration_Data/FeatureServer/0/query?where=1%3D1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=*&returnGeometry=true&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pjson&token=";
+
+// Below URL was updated on 28/01/2021 to include the 2nd dose data. So far, daily updates have not materialised.
+$geoHiveVaccineAPI = "https://services-eu1.arcgis.com/z6bHNio59iTqqSUY/arcgis/rest/services/Covid19_Vaccine_Administration_Data_View/FeatureServer/0/query?where=1%3D1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=*&returnGeometry=true&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pjson&token=";
 
 /* Grab data from geohive once to prevent multiple requests */
 $globalGeoHiveDataArray = getGeoHiveData();
@@ -129,6 +131,25 @@ function getGeoHiveFirstDoseTotals(){
     /* Long variable names suck, but at least they make sense. */
     $totalNumberFirstDoseAdministered =  $globalGeoHiveDataArray['features'][$keyOfLatestData]['attributes']['total_number_of_1st_dose_admini'];
     return $totalNumberFirstDoseAdministered;
+}
+
+function getGeoHiveSecondDoseTotals(){
+
+    global $globalGeoHiveDataArray;
+
+    /* Find the key of the last element, which will be the most recent data. */
+    $sizeOfFeaturesArray = sizeof($globalGeoHiveDataArray['features']);
+    $keyOfLatestData = $sizeOfFeaturesArray - 1;
+
+    /* Long variable names suck, but at least they make sense. */
+    $totalNumberSecondDoseAdministered =  $globalGeoHiveDataArray['features'][$keyOfLatestData]['attributes']['total_number_of_2nd_dose_admini'];
+    return $totalNumberSecondDoseAdministered;
+}
+
+function getGeoHiveTotalVaccinations(){
+
+    return getGeoHiveSecondDoseTotals() + getGeoHiveFirstDoseTotals();
+
 }
 
 /*  Sort through the GeoHive data array and extract the daily vaccination totals date.
