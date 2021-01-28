@@ -14,6 +14,8 @@ $vaccineData = getLatestVaccineData();
 $populationIreland = 4977400;
 $vaccinationRatePer100 = ((getGeoHiveFirstDoseTotals()/$populationIreland)*100);
 
+$currentDate =  date('Y-m-d');
+
 ?>
 
 <!DOCTYPE html>
@@ -94,8 +96,8 @@ $vaccinationRatePer100 = ((getGeoHiveFirstDoseTotals()/$populationIreland)*100);
             dataTable.addColumn({type: 'date', id: 'Start'});
             dataTable.addColumn({type: 'date', id: 'End'});
             dataTable.addRows([
-                ['Pfizer/BioNTech', 'Approved', new Date('2020-12-21'), new Date("2021-1-14")],
-                ['Moderna', 'Approved', new Date("2021-1-6"), new Date("2021-1-14")]]);
+                ['Pfizer/BioNTech', 'Approved', new Date('2020-12-21'), new Date("<?php echo $currentDate; ?>")],
+                ['Moderna', 'Approved', new Date("2021-1-6"), new Date("<?php echo $currentDate; ?>")]]);
 
             var options = {
                 timeline: {groupByRowLabel: false},
@@ -123,8 +125,8 @@ $vaccinationRatePer100 = ((getGeoHiveFirstDoseTotals()/$populationIreland)*100);
             dataTable.addColumn({type: 'date', id: 'End'});
             dataTable.addRows([
                 ['AstraZeneca', 'Rolling Review', new Date('2020-10-01'), new Date("2021-01-12")],
-                ['AstraZeneca', 'Conditional Marketing Authorisation - Under Review', new Date('2021-01-12'), new Date("2021-1-14")],
-                ['Johnson & Johnson', 'Rolling Review', new Date("2020-12-01"), new Date("2021-1-14")]]);
+                ['AstraZeneca', 'Conditional Marketing Authorisation - Under Review', new Date('2021-01-12'), new Date("<?php echo $currentDate; ?>")],
+                ['Johnson & Johnson', 'Rolling Review', new Date("2020-12-01"), new Date("<?php echo $currentDate; ?>")]]);
 
             var options = {
                 timeline: {groupByRowLabel: true},
@@ -181,7 +183,7 @@ $vaccinationRatePer100 = ((getGeoHiveFirstDoseTotals()/$populationIreland)*100);
         <br>
         <div class="alert alert-info" role="alert">
             Granular vaccination information is not yet available, so this is quite bare for now. The data shown below
-            is from Our World in Data until vaccine data gets added to the the GeoHive Data Hub.
+            will be updated when more becomes available.
         </div>
 
         <div class="row mt-3 pt-3">
