@@ -6,10 +6,15 @@ date_default_timezone_set('Europe/Dublin');
 
 require('../vaccineData.php');
 
+/* This is for using OWID Data
 $dataArray = getLatestVaccineData();
 $vaccineNumber = $dataArray['vaccinesGiven'];
 $dataDate = $dataArray['date'];
+*/
 
+/* Using GeoHive Data */
+$vaccineNumber = getGeoHiveTotalVaccinations();
+$dataDate = getGeoHiveFirstDoseTotalsDate();
 
 /*  PHP Add text to image library
  *  GitHub: https://github.com/Ghostff/PHP-Add-text-to-image/blob/master/index.php
@@ -23,7 +28,7 @@ header("Content-Type: image/png");
 $vaccinesGiven = function (TextToImage $handler) {
     global $vaccineNumber;
     $handler->add(number_format($vaccineNumber))
-        ->position(235, 325)
+        ->position(205, 325)
         ->font(100, __DIR__ . '/Lato-Bold.ttf')
         ->color(0, 0, 0);
 };
