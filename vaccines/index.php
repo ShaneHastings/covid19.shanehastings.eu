@@ -97,7 +97,8 @@ $currentDate =  date('Y-m-d');
             dataTable.addColumn({type: 'date', id: 'End'});
             dataTable.addRows([
                 ['Pfizer/BioNTech', 'Approved', new Date('2020-12-21'), new Date("<?php echo $currentDate; ?>")],
-                ['Moderna', 'Approved', new Date("2021-1-6"), new Date("<?php echo $currentDate; ?>")]]);
+                ['Moderna', 'Approved', new Date("2021-1-6"), new Date("<?php echo $currentDate; ?>")],
+                ['AstraZeneca', 'Approved', new Date('2021-01-29'), new Date("<?php echo $currentDate; ?>")]]);
 
             var options = {
                 timeline: {groupByRowLabel: false},
@@ -124,8 +125,6 @@ $currentDate =  date('Y-m-d');
             dataTable.addColumn({type: 'date', id: 'Start'});
             dataTable.addColumn({type: 'date', id: 'End'});
             dataTable.addRows([
-                ['AstraZeneca', 'Rolling Review', new Date('2020-10-01'), new Date("2021-01-12")],
-                ['AstraZeneca', 'Conditional Marketing Authorisation - Under Review', new Date('2021-01-12'), new Date("<?php echo $currentDate; ?>")],
                 ['Johnson & Johnson', 'Rolling Review', new Date("2020-12-01"), new Date("<?php echo $currentDate; ?>")]]);
 
             var options = {
