@@ -148,7 +148,7 @@ $currentDate =  date('Y-m-d');
     <nav class="navbar navbar-light navbar-expand-md" style="background: #00BFF3;">
         <div class="container-fluid"><a class="navbar-brand" href="/vaccines"
                                         style="color: white; font-family: Lato, sans-serif;padding-top: 5px;"><strong>COVID-19
-                    Vaccine Rollout</strong><br><?php echo date('l, jS F Y', strtotime(getGeoHiveFirstDoseTotalsDate())); ?></a>
+                    Vaccine Data</strong><br>Ireland & NI</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -185,10 +185,10 @@ $currentDate =  date('Y-m-d');
 <br>
         <ul class="nav nav-pills" id="pills-tab" role="tablist" >
             <li class="nav-item w-50">
-                <a style="text-align: center" class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#Ireland" role="tab" aria-controls="pills-home" aria-selected="true">Ireland</a>
+                <a style="text-align: center" class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#Ireland" role="tab" aria-controls="pills-home" aria-selected="true">Ireland (<?php echo date('d-m-Y', strtotime(getGeoHiveFirstDoseTotalsDate())); ?>)</a>
             </li>
             <li class="nav-item w-50">
-                <a style="text-align: center" class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#NorthernIreland" role="tab" aria-controls="pills-profile" aria-selected="false">Northern Ireland</a>
+                <a style="text-align: center" class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#NorthernIreland" role="tab" aria-controls="pills-profile" aria-selected="false">Northern Ireland (<?php echo date('d-m-Y', strtotime(getNIDataPublishDate())); ?>)</a>
             </li>
         </ul>
         <hr>
