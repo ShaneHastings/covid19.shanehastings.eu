@@ -564,12 +564,12 @@ $currentDate =  date('Y-m-d');
 <div class="footer-basic" style="background-color: #f0f0f0">
     <footer>
         <ul class="list-inline">
-            <li class="list-inline-item"><a  data-toggle="tooltip" title="Changes to attributes will be made as more data becomes available. Be warned!" href="/vaccines/json/"><i class="fas fa-code"></i> Vaccine Data as JSON</a></li>
+            <li class="list-inline-item"><a  data-toggle="tooltip" title="Changes to attributes will be made as more data becomes available. Be warned!" href="/vaccines/json/"><i class="fas fa-code"></i> ROI Vaccine Data as JSON</a></li>
             <li class="list-inline-item"><a
                         href="#dataSourceModal" data-toggle="modal" data-target="#dataSourceModal"><i class="fas fa-database"></i> Data Sources</a></li>
             <li class="list-inline-item"><a
                         href="https://github.com/ShaneHastings/covid19.shanehastings.eu/tree/main/vaccines"
-                        target="_blank"><i class="fab fa-github"></i> GitHub</a></li> 
+                        target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
             <li class="list-inline-item"><a href="https://twitter.com/ShaneHastingsIE"><i class="fab fa-twitter"></i>
                     Contact</a></li>
         </ul>
