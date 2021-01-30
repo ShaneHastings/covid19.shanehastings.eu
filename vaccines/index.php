@@ -155,26 +155,26 @@ $currentDate =  date('Y-m-d');
             </button>
         </div>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul  class="navbar-nav" >
 
                 <li class="nav-item ">
-                    <a class="nav-link" href="/api/swabs/">Swabs</a>
+                    <a style="color: white;" class="nav-link" href="/api/swabs/">Swabs</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="/cases">Cases</a>
+                    <a style="color: white;" class="nav-link" href="/cases">Cases</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/vaccines">Vaccines</a>
+                    <a style="color: #313131;" class="nav-link" href="/vaccines">Vaccines</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="/">Home</a>
+                    <a style="color: white;" class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="/vaccines/img/"><i class="fas fa-share-square"></i></a>
+                    <a style="color: white;" class="nav-link" href="/vaccines/img/"><i class="fas fa-share-square"></i></a>
                 </li>
 
                 <li class="nav-item ">
-                    <a class="nav-link" href="https://twitter.com/COVID19DataIE"><i class="fab fa-twitter"></i></a>
+                    <a style="color: white;" class="nav-link" href="https://twitter.com/COVID19DataIE"><i class="fab fa-twitter"></i></a>
                 </li>
 
             </ul>
