@@ -272,6 +272,7 @@ $currentDate =  date('Y-m-d');
 
 
         </div>
+
         <!-- Ireland Vaccine Tracker Chart -->
         <div class="row">
             <div class="col">
@@ -288,7 +289,7 @@ $currentDate =  date('Y-m-d');
         </div>
         <!-- Ireland Vaccine Tracker Chart End -->
 
-            </div>
+            </div>   <br>
             <!-- End of ROI tab-content -->
 
             <!-- Start of NI tab-content -->
