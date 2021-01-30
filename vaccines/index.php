@@ -182,6 +182,16 @@ $currentDate =  date('Y-m-d');
         </div>
     </nav>
     <div class="container">
+<br>
+        <ul class="nav nav-pills" id="pills-tab" role="tablist" >
+            <li class="nav-item w-50">
+                <a style="text-align: center" class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#Ireland" role="tab" aria-controls="pills-home" aria-selected="true">Ireland</a>
+            </li>
+            <li class="nav-item w-50">
+                <a style="text-align: center" class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#NorthernIreland" role="tab" aria-controls="pills-profile" aria-selected="false">Northern Ireland</a>
+            </li>
+        </ul>
+        <hr>
         <!-- Start of of tab-content -->
         <div class="tab-content" id="pills-tabContent">
 
@@ -399,15 +409,7 @@ $currentDate =  date('Y-m-d');
         </div>
         <!-- End of tab-content -->
 
-        <hr>
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" >
-            <li class="nav-item">
-                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#Ireland" role="tab" aria-controls="pills-home" aria-selected="true">Ireland</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#NorthernIreland" role="tab" aria-controls="pills-profile" aria-selected="false">Northern Ireland</a>
-            </li>
-        </ul>
+
 
         <!-- Our World in Data | EU Chart -->
         <div class="row">
