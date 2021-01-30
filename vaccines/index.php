@@ -432,9 +432,9 @@ $currentDate =  date('Y-m-d');
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="text-muted card-subtitle mb-2">Approved Vaccines<br></h6>
+                        <h6 class="text-muted card-subtitle mb-2">Approved Vaccines (Ireland / EU)<br></h6>
                         <div id="approvedVaccineTimeline" style="height: 200px;"></div>
-                        <h6 class="text-muted card-subtitle mb-2">Under review<br></h6>
+                        <h6 class="text-muted card-subtitle mb-2">Under review (Ireland / EU)<br></h6>
                         <div id="unapprovedVaccineTimeline" style="height: 200px;"></div>
 
                         <p class="card-text"><b>Source: </b> <a
