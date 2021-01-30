@@ -288,8 +288,8 @@ $currentDate =  date('Y-m-d');
             </div>
         </div>
         <!-- Ireland Vaccine Tracker Chart End -->
-
-            </div>   <br>
+                <br>
+            </div>
             <!-- End of ROI tab-content -->
 
             <!-- Start of NI tab-content -->
