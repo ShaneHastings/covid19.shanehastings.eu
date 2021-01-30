@@ -286,6 +286,7 @@ $currentDate =  date('Y-m-d');
 
 
                 <div class="row mt-3 pt-3">
+
                     <div class="col-md-6">
                         <!-- Card group -->
                         <div class="card-group">
@@ -359,7 +360,8 @@ $currentDate =  date('Y-m-d');
 
 
                 </div>
-                <!-- Ireland Vaccine Tracker Chart -->
+
+                <!-- N. Ireland Vaccine Tracker Chart -->
                 <div class="row">
                     <div class="col">
                         <div class="card">
@@ -373,7 +375,7 @@ $currentDate =  date('Y-m-d');
                         </div>
                     </div>
                 </div>
-                <!-- Ireland Vaccine Tracker Chart End -->
+                <!-- N. Ireland Vaccine Tracker Chart End -->
 
 
 
@@ -390,7 +392,7 @@ $currentDate =  date('Y-m-d');
 
 
 
-
+                NI Vaccine Data from GOV.UK updated on <?php echo getNIDataPublishDate(); ?>
             </div>
             <!-- End of NI tab-content -->
 
