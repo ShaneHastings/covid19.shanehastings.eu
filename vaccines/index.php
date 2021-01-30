@@ -14,6 +14,9 @@ $vaccineData = getLatestVaccineData();
 $populationIreland = 4977400;
 $vaccinationRatePer100 = ((getGeoHiveTotalVaccinations()/$populationIreland)*100);
 
+$populationNorthernIreland = 1893700;
+$northernIrelandVaccinationRatePer100 = ((getNITotalVaccinations()/$populationNorthernIreland)*100);
+
 $currentDate =  date('Y-m-d');
 
 ?>
@@ -179,11 +182,11 @@ $currentDate =  date('Y-m-d');
         </div>
     </nav>
     <div class="container">
-        <br>
-        <div class="alert alert-info" role="alert">
-            Granular vaccination information is not yet available, so this is quite bare for now. The data shown below
-            will be updated when more becomes available.
-        </div>
+        <!-- Start of of tab-content -->
+        <div class="tab-content" id="pills-tabContent">
+
+            <!-- Start of ROI tab-content -->
+            <div class="tab-pane fade show active" id="Ireland" role="tabpanel" aria-labelledby="pills-home-tab">
 
         <div class="row mt-3 pt-3">
             <div class="col-md-6">
@@ -275,8 +278,134 @@ $currentDate =  date('Y-m-d');
         </div>
         <!-- Ireland Vaccine Tracker Chart End -->
 
+            </div>
+            <!-- End of ROI tab-content -->
 
-        <br>
+            <!-- Start of NI tab-content -->
+            <div class="tab-pane fade" id="NorthernIreland" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+
+                <div class="row mt-3 pt-3">
+                    <div class="col-md-6">
+                        <!-- Card group -->
+                        <div class="card-group">
+
+                            <!-- Card -->
+                            <div class="card mb-4">
+                                <!-- Card content -->
+                                <div class="card-body">
+                                    <!-- Title -->
+                                    <h6 class="card-title">First dose vaccinations </h6>
+                                    <!-- Text -->
+                                    <p class="card-text red-text"><i class="fas fa-chart-line fa-2x"></i><span class="ml-2" style="font-size: 30px;"><?php echo number_format(getNIFirstDoseTotal()); ?></span>
+                                    </p>
+                                </div>
+                                <!-- Card content -->
+                            </div>
+                            <!-- Card -->
+                            <!-- Card -->
+                            <div class="card mb-4">
+                                <!-- Card content -->
+                                <div class="card-body">
+                                    <!-- Title -->
+                                    <h6 class="card-title">Second dose vaccinations</h6>
+                                    <!-- Text -->
+                                    <p class="card-text green-text"><i class="fas fa-chart-line fa-2x"></i><span class="ml-2"
+                                                                                                                 style="font-size: 30px;"><?php echo number_format(getNISecondDoseTotal()); ?></span>
+                                    </p>
+                                </div>
+                                <!-- Card content -->
+                            </div>
+                            <!-- Card -->
+                        </div>
+                        <!-- Card group -->
+                    </div>
+
+                    <div class="col-md-6">
+                        <!-- Card group -->
+                        <div class="card-group">
+                            <!-- Card -->
+                            <div class="card mb-4">
+                                <!-- Card content -->
+                                <div class="card-body">
+                                    <!-- Title -->
+                                    <h6 class="card-title" style="text-underline-position: under; text-decoration:underline; text-decoration-style: dotted;" data-toggle="tooltip" title="Based on NI population of <?php echo number_format($populationNorthernIreland); ?> from NISRA mid-year 2019 estimates.">Vaccinations per 100 people</h6>
+                                    <!-- Text -->
+                                    <p class="card-text blue-text"><i class="fas fa-user-shield fa-2x"></i><span class="ml-2"
+                                                                                                                 style="font-size: 30px;"><?php echo round($northernIrelandVaccinationRatePer100, 2); ?></span>/100
+                                    </p>
+                                </div>
+                                <!-- Card content -->
+                            </div>
+                            <!-- Card -->
+                            <!-- Card -->
+                            <div class="card mb-4">
+                                <!-- Card content -->
+                                <div class="card-body">
+                                    <!-- Title -->
+                                    <h6 class="card-title">Total vaccinations</h6>
+                                    <!-- Text -->
+                                    <p class="card-text red-text"><i class="fas fa-syringe fa-2x"></i></i><span class="ml-2"
+                                                                                                                style="font-size: 30px;"><?php echo number_format(getNITotalVaccinations()); ?></span>
+                                    </p>
+                                </div>
+                                <!-- Card content -->
+                            </div>
+                            <!-- Card -->
+                        </div>
+                        <!-- Card group -->
+                    </div>
+
+
+
+                </div>
+                <!-- Ireland Vaccine Tracker Chart -->
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="text-muted card-subtitle mb-2">Total vaccines administered by date reported<br></h6>
+                                <p class="card-text">
+                                    <canvas id="VaccinationsByDate"></canvas>
+                                    <b>Source:</b> Our World in Data
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ireland Vaccine Tracker Chart End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+            <!-- End of NI tab-content -->
+
+        </div>
+        <!-- End of tab-content -->
+
+        <hr>
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" >
+            <li class="nav-item">
+                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#Ireland" role="tab" aria-controls="pills-home" aria-selected="true">Ireland</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#NorthernIreland" role="tab" aria-controls="pills-profile" aria-selected="false">Northern Ireland</a>
+            </li>
+        </ul>
 
         <!-- Our World in Data | EU Chart -->
         <div class="row">
