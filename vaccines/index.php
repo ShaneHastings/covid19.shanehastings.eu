@@ -569,7 +569,7 @@ $currentDate =  date('Y-m-d');
                         href="#dataSourceModal" data-toggle="modal" data-target="#dataSourceModal"><i class="fas fa-database"></i> Data Sources</a></li>
             <li class="list-inline-item"><a
                         href="https://github.com/ShaneHastings/covid19.shanehastings.eu/tree/main/vaccines"
-                        target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+                        target="_blank"><i class="fab fa-github"></i> GitHub</a></li> 
             <li class="list-inline-item"><a href="https://twitter.com/ShaneHastingsIE"><i class="fab fa-twitter"></i>
                     Contact</a></li>
         </ul>
