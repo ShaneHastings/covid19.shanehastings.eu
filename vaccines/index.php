@@ -164,7 +164,7 @@ $currentDate =  date('Y-m-d');
                     <a style="color: white;" class="nav-link" href="/cases">Cases</a>
                 </li>
                 <li class="nav-item active">
-                    <a style="color: #313131;" class="nav-link" href="/vaccines">Vaccines</a>
+                    <a style="color: white;" class="nav-link" href="/vaccines"><b>Vaccines</b></a>
                 </li>
                 <li class="nav-item ">
                     <a style="color: white;" class="nav-link" href="/">Home</a>
