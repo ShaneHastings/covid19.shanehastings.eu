@@ -366,7 +366,7 @@ $currentDate =  date('Y-m-d');
                             <div class="card-body">
                                 <h6 class="text-muted card-subtitle mb-2">Total vaccines administered by date reported<br></h6>
                                 <p class="card-text">
-                                    <canvas id="VaccinationsByDate"></canvas>
+                                    <canvas id="NIVaccinationsByDate"></canvas>
                                     <b>Source:</b> Our World in Data
                                 </p>
                             </div>
@@ -451,6 +451,8 @@ $currentDate =  date('Y-m-d');
 
 
 <!-- Charts -->
+
+<!-- Republic of Ireland - Vaccine Chart using OWID Data -->
 <script>
     var ctx = document.getElementById('VaccinationsByDate').getContext('2d');
     var ROIChart = new Chart(ctx, {
@@ -489,6 +491,74 @@ $currentDate =  date('Y-m-d');
     });
 
 </script>
+<!-- Northern Ireland - Vaccine Chart using OWID Data -->
+<script>
+    var ctx = document.getElementById('NIVaccinationsByDate').getContext('2d');
+    var ROIChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [<?php getNIChartVaccinationDates(); ?>],
+            datasets: [
+
+                {
+                    label: 'Vaccines Administered',
+                    data: [<?php getNIChartTotalVaccinations(); ?>],
+                    backgroundColor: [
+                        'rgba(0, 191, 243, 0.5)',
+
+                    ],
+                    borderColor: [
+                        'rgba(0, 0, 0, 1)',
+
+                    ],
+                    borderWidth: 1.2
+                }]
+        },
+        options: {
+
+            elements: {},
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+
+        },
+
+    });
+
+</script>
+<!-- Modal -->
+<div class="modal fade" id="dataSourceModal" tabindex="-1" role="dialog" aria-labelledby="dataSourceModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dataSourceModalLabel">Data Sources</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <B>Our World in Data</B><br>
+                <li><a href="https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/country_data/Ireland.csv">Ireland</a></li>
+                <li><a href="https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/country_data/Northern%20Ireland.csv">Northern Ireland</a></li>
+                <li><a href="https://ourworldindata.org/grapher/covid-vaccination-doses-per-capita?tab=chart&stackMode=absolute&time=latest&country=AUT~BEL~BGR~HRV~CYP~CZE~DNK~EST~European%20Union~FIN~FRA~DEU~GRC~HUN~ISL~IRL~ITA~LVA~LUX~MLT~NLD~POL~PRT~ROU~SVK~SVN~ESP~SWE&region=World">Country comparison chart</a></li>
+                <hr>
+                <b>Ireland's COVID-19 Data Hub</b>
+                <li><a href="https://services-eu1.arcgis.com/z6bHNio59iTqqSUY/arcgis/rest/services/Covid19_Vaccine_Administration_Data_View/FeatureServer/0/query?where=1%3D1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=*&returnGeometry=true&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=html&token=">Daily vaccination statistics</a></li>
+                <hr>
+                <b>GOV.UK - Northern Ireland</b><br>
+                <li><a href="https://api.coronavirus.data.gov.uk/v2/data?areaType=nation&areaCode=N92000002&metric=cumPeopleVaccinatedCompleteByPublishDate&metric=cumPeopleVaccinatedFirstDoseByPublishDate&metric=cumPeopleVaccinatedSecondDoseByPublishDate&format=json">Daily vaccination statistics</a></li>
+                <hr>
+                <b>Population Figures</b><br>
+                <li>Ireland (<?php echo number_format($populationIreland); ?>)</li>
+                <li>Northern Ireland (<?php echo number_format($populationNorthernIreland); ?>)</li>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div class="footer-basic" style="background-color: #f0f0f0">
@@ -496,10 +566,9 @@ $currentDate =  date('Y-m-d');
         <ul class="list-inline">
             <li class="list-inline-item"><a  data-toggle="tooltip" title="Changes to attributes will be made as more data becomes available. Be warned!" href="/vaccines/json/"><i class="fas fa-code"></i> Vaccine Data as JSON</a></li>
             <li class="list-inline-item"><a
-                        href="https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations"
-                        target="_blank"><i class="fas fa-database"></i> Data Source</a></li>
+                        href="#dataSourceModal" data-toggle="modal" data-target="#dataSourceModal"><i class="fas fa-database"></i> Data Sources</a></li>
             <li class="list-inline-item"><a
-                        href="https://github.com/ShaneHastings/covid19.shanehastings.eu"
+                        href="https://github.com/ShaneHastings/covid19.shanehastings.eu/tree/main/vaccines"
                         target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
             <li class="list-inline-item"><a href="https://twitter.com/ShaneHastingsIE"><i class="fab fa-twitter"></i>
                     Contact</a></li>

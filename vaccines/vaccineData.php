@@ -30,13 +30,13 @@ $globalGovUKDataArray = getGOVUKData();
 /* Grab data from geohive once to prevent multiple requests */
 $globalGeoHiveDataArray = getGeoHiveData();
 
-/* Grab data from github once to prevent multiple requests. */
+/* Grab ROI data from github once to prevent multiple requests. */
 $globalVaccineDataArray = getVaccineDataFromCSV();
 
-
+/* Grab NI data from github once to prevent multiple requests. */
+$globalNIVaccineDataArray = getNIVaccineDataFromCSV();
 
 /*  Our World in Data Vaccine Sources
- *
  */
 function getVaccineDataFromCSV()
 {
@@ -46,6 +46,25 @@ function getVaccineDataFromCSV()
     $file = fopen($ourWorldInData_Ireland, 'r');
     if ( !$file ) {
         echo "<h1>Data source unavailable. Try again later.</h1><br>Data source: " . $ourWorldInData_Ireland;
+        die();
+    }
+    while (($result = fgetcsv($file)) !== false) {
+        $csv[] = $result;
+    }
+
+    fclose($file);
+    return $csv;
+
+}
+
+function getNIVaccineDataFromCSV()
+{
+    global $ourWorldInData_NorthernIreland;
+    $csv = array();
+    /* Try grab the file from GitHub. If it fails, throw an error. */
+    $file = fopen($ourWorldInData_NorthernIreland, 'r');
+    if ( !$file ) {
+        echo "<h1>Data source unavailable. Try again later.</h1><br>Data source: " . $ourWorldInData_NorthernIreland;
         die();
     }
     while (($result = fgetcsv($file)) !== false) {
@@ -249,3 +268,34 @@ function getNITotalVaccinations(){
 
 }
 
+/*  Returns the total Northern Irish vaccinations as comma separated values for the ChartJS chart.
+*   Data source: Our World in Data
+ */
+function getNIChartTotalVaccinations()
+{
+    global $globalNIVaccineDataArray;
+    $vaccineData = $globalNIVaccineDataArray;
+
+    /* Loop through array and get totals */
+    foreach (array_slice($vaccineData, 1) as $vaccinesGiven) {
+        echo $vaccinesGiven[4];
+        echo ",";
+    }
+}
+
+/*  Returns the Northehrn Irish vaccine dates as comma separated values for the ChartJS chart.
+*   Data source: Our World in Data
+ */
+function getNIChartVaccinationDates()
+{
+
+    global $globalNIVaccineDataArray;
+    $vaccineData = $globalNIVaccineDataArray;
+
+    /* Loop through array and get dates */
+    foreach (array_slice($vaccineData, 1) as $vaccineDates) {
+        echo "'";
+        echo date('M-d', strtotime($vaccineDates[1]));;
+        echo "',";
+    }
+}
