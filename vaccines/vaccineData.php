@@ -17,12 +17,20 @@ if ($escaped_url == "covid19.shanehastings.eudev"){
     @ini_set('display_errors', 0);
 }
 
-/* Vaccine Data Sources */
+/* Original Vaccine Data Sources */
+
 $ourWorldInData_Ireland = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/country_data/Ireland.csv";
 $ourWorldInData_NorthernIreland = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/country_data/Northern%20Ireland.csv";
 // Below URL was updated on 28/01/2021 to include the 2nd dose data. So far, daily updates have not materialised.
 $geoHiveVaccineAPI = "https://services-eu1.arcgis.com/z6bHNio59iTqqSUY/arcgis/rest/services/Covid19_Vaccine_Administration_Data_View/FeatureServer/0/query?where=1%3D1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=*&returnGeometry=true&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pjson&token=";
 $northernIrelandGovUK = "https://api.coronavirus.data.gov.uk/v2/data?areaType=nation&areaCode=N92000002&metric=cumPeopleVaccinatedCompleteByPublishDate&metric=cumPeopleVaccinatedFirstDoseByPublishDate&metric=cumPeopleVaccinatedSecondDoseByPublishDate&format=json";
+
+/* Self hosted sources */
+$ourWorldInData_Ireland = "https://covid19.shanehastings.eu/vaccines/datasets/roiVaccineDataOWID.csv";
+$ourWorldInData_NorthernIreland = "https://covid19.shanehastings.eu/vaccines/datasets/niVaccineDataOWID.csv";
+$geoHiveVaccineAPI = "https://covid19.shanehastings.eu/vaccines/datasets/roiVaccineData.json";
+$northernIrelandGovUK = "https://covid19.shanehastings.eu/vaccines/datasets/niVaccineData.json";
+
 
 /* Grab GOV.UK data for Northern Ireland */
 $globalGovUKDataArray = getGOVUKData();
