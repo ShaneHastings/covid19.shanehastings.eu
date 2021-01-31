@@ -473,7 +473,7 @@ $currentDate =  date('Y-m-d');
                     label: 'Vaccines Administered',
                     data: [<?php getChartTotalVaccinations(); ?>],
                     backgroundColor: [
-                        'rgba(0, 191, 243, 0.5)',
+                        'rgba(0, 191, 243, 0.2)',
 
                     ],
                     borderColor: [
@@ -512,7 +512,7 @@ $currentDate =  date('Y-m-d');
                     label: 'Vaccines Administered',
                     data: [<?php getNIChartTotalVaccinations(); ?>],
                     backgroundColor: [
-                        'rgba(0, 191, 243, 0.5)',
+                        'rgba(0, 191, 243, 0.2)',
 
                     ],
                     borderColor: [

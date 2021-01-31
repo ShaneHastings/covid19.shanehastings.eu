@@ -77,6 +77,7 @@ function checkPWAInstalled(){
 </head>
 
 <body>
+
     <nav class="navbar <?php checkPWAInstalled(); ?> navbar-light navbar-expand-md navigation-clean" style="background: #FFEF10;">
         <div class="container"><a class="navbar-brand" href="#" style="font-family: Lato, sans-serif;">COVID-19 Data</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
