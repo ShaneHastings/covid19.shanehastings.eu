@@ -131,7 +131,8 @@ $currentDate =  date('Y-m-d');
             dataTable.addColumn({type: 'date', id: 'Start'});
             dataTable.addColumn({type: 'date', id: 'End'});
             dataTable.addRows([
-                ['Johnson & Johnson', 'Rolling Review', new Date("2020-12-01"), new Date("<?php echo $currentDate; ?>")]]);
+                ['Johnson & Johnson', 'Rolling Review', new Date("2020-12-01"), new Date("<?php echo $currentDate; ?>")],
+                ['Novavax', 'Rolling Review', new Date("2021-02-03"), new Date("<?php echo $currentDate; ?>")]]);
 
             var options = {
                 timeline: {groupByRowLabel: true},
