@@ -167,7 +167,7 @@ function getGeoHiveFirstDoseTotals(){
     /* Find the key of the last element, which will be the most recent data. */
     $sizeOfFeaturesArray = sizeof($globalGeoHiveDataArray['features']);
     $keyOfLatestData = $sizeOfFeaturesArray - 1;
-    $totalNumberFirstDoseAdministered =  $globalGeoHiveDataArray['features'][$keyOfLatestData]['attributes']['total_number_of_1st_dose_admini'];
+    $totalNumberFirstDoseAdministered =  $globalGeoHiveDataArray['features'][$keyOfLatestData]['attributes']['firstDose'];
     return $totalNumberFirstDoseAdministered;
 }
 
@@ -178,13 +178,19 @@ function getGeoHiveSecondDoseTotals(){
     /* Find the key of the last element, which will be the most recent data. */
     $sizeOfFeaturesArray = sizeof($globalGeoHiveDataArray['features']);
     $keyOfLatestData = $sizeOfFeaturesArray - 1;
-    $totalNumberSecondDoseAdministered =  $globalGeoHiveDataArray['features'][$keyOfLatestData]['attributes']['total_number_of_2nd_dose_admini'];
+    $totalNumberSecondDoseAdministered =  $globalGeoHiveDataArray['features'][$keyOfLatestData]['attributes']['secondDose'];
     return $totalNumberSecondDoseAdministered;
 }
 
 function getGeoHiveTotalVaccinations(){
 
-    return getGeoHiveSecondDoseTotals() + getGeoHiveFirstDoseTotals();
+    global $globalGeoHiveDataArray;
+
+    /* Find the key of the last element, which will be the most recent data. */
+    $sizeOfFeaturesArray = sizeof($globalGeoHiveDataArray['features']);
+    $keyOfLatestData = $sizeOfFeaturesArray - 1;
+    $totalDosesAdmininistered =  $globalGeoHiveDataArray['features'][$keyOfLatestData]['attributes']['totalAdministered'];
+    return $totalDosesAdmininistered;
 
 }
 
@@ -197,7 +203,7 @@ function getGeoHiveFirstDoseTotalsDate(){
     /* Find the key of the last element, which will be the most recent data. */
     $sizeOfFeaturesArray = sizeof($globalGeoHiveDataArray['features']);
     $keyOfLatestData = $sizeOfFeaturesArray - 1;
-    $dateOfTotalNumberFirstDoseAdministered =  $globalGeoHiveDataArray['features'][$keyOfLatestData]['attributes']['data_relevent_up_to_date'];
+    $dateOfTotalNumberFirstDoseAdministered =  $globalGeoHiveDataArray['features'][$keyOfLatestData]['attributes']['relDate'];
     $convertedDate = timestampToDate($dateOfTotalNumberFirstDoseAdministered);
 
     return $convertedDate;
