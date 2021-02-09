@@ -8,6 +8,7 @@ include '../vaccineData.php';
 
 $populationIreland = 4977400;
 $vaccinationRatePer100 = round(((getGeoHiveTotalVaccinations()/$populationIreland)*100), 2);;
+$populationWithFirstDose = round(((getGeoHiveFirstDoseTotals()/$populationIreland)*100), 1);;
 
 /* Encode data for JSON Response */
 $jsonResponse = "";
@@ -17,6 +18,7 @@ $jsonResponse->totalSecondDoseAdministered = getGeoHiveSecondDoseTotals();
 $jsonResponse->totalVaccinations = getGeoHiveTotalVaccinations();
 $jsonResponse->vaccinatedToday = 'unknown';
 $jsonResponse->vaccinationsPer100People = $vaccinationRatePer100;
+$jsonResponse->populationWithFirstDose = $populationWithFirstDose . "%";
 
 $jsonResponse->vaccineManufacturer->pfizerBioNTech = getGeoHiveVaccineTotalsByManufacturer("pf");
 $jsonResponse->vaccineManufacturer->moderna = getGeoHiveVaccineTotalsByManufacturer("modern");
