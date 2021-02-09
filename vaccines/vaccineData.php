@@ -209,6 +209,23 @@ function getGeoHiveFirstDoseTotalsDate(){
     return $convertedDate;
 }
 
+/*  Get the number of vaccines given out for each manufacturer.
+ *  Key:    "pf"     = Pfizer/BioNTech
+ *          "modern" = Moderna
+ */
+function getGeoHiveVaccineTotalsByManufacturer($vaccineManufacturer){
+
+    global $globalGeoHiveDataArray;
+
+    /* Find the key of the last element, which will be the most recent data. */
+    $sizeOfFeaturesArray = sizeof($globalGeoHiveDataArray['features']);
+    $keyOfLatestData = $sizeOfFeaturesArray - 1;
+    $totalVaccinesFromManufacturer =  $globalGeoHiveDataArray['features'][$keyOfLatestData]['attributes'][$vaccineManufacturer];
+
+    return $totalVaccinesFromManufacturer;
+}
+
+
 /*  Converts UNIX timestamp returned by GeoHive source and returns in format YYYY-MM-DD.
  *
  */
