@@ -239,6 +239,22 @@ function getGeoHiveVaccineTotalsByManufacturer($vaccineManufacturer){
     return $totalVaccinesFromManufacturer;
 }
 
+/*  Get the number of vaccines given out to each cohort.
+ *  Key:    "totalcoh1"  = Cohort 1 (65+ in LTRC, + Staff)
+ *          "totalcoh2"  = Cohort 2 (Frontline healthcare workers)
+ *          "totalcoh16" = Others (everyone else outside the two groups in 1 + 2)
+ */
+function getGeoHiveVaccineTotalsByCohort($cohortID){
+
+    global $globalGeoHiveDataArray;
+
+    /* Find the key of the last element, which will be the most recent data. */
+    $sizeOfFeaturesArray = sizeof($globalGeoHiveDataArray['features']);
+    $keyOfLatestData = $sizeOfFeaturesArray - 1;
+    $totalVaccinesGivenToCohort =  $globalGeoHiveDataArray['features'][$keyOfLatestData]['attributes'][$cohortID];
+
+    return $totalVaccinesGivenToCohort;
+}
 
 /*  Converts UNIX timestamp returned by GeoHive source and returns in format YYYY-MM-DD.
  *
