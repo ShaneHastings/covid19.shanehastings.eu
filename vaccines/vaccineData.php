@@ -126,6 +126,20 @@ function getChartTotalVaccinations()
     }
 }
 
+/*  Returns the total number of people fully vaccinated as comma separated values for the ChartJS chart.
+ */
+function getChartTotalFullyVaccinations()
+{
+    global $globalVaccineDataArray;
+    $vaccineData = $globalVaccineDataArray;
+
+    /* Loop through array and get totals */
+    foreach (array_slice($vaccineData, 1) as $vaccinesGiven) {
+        echo $vaccinesGiven[6];
+        echo ",";
+    }
+}
+
 /*  Returns the vaccine dates as comma separated values for the ChartJS chart.
  */
 function getChartVaccinationDates()
@@ -137,7 +151,7 @@ function getChartVaccinationDates()
     /* Loop through array and get dates */
     foreach (array_slice($vaccineData, 1) as $vaccineDates) {
         echo "'";
-        echo date('M-d', strtotime($vaccineDates[1]));;
+        echo date('d-M-Y', strtotime($vaccineDates[1]));;
         echo "',";
     }
 }
@@ -327,5 +341,20 @@ function getNIChartVaccinationDates()
         echo "'";
         echo date('M-d', strtotime($vaccineDates[1]));;
         echo "',";
+    }
+}
+
+/*  Returns the total number of people fully vaccinated in Northern Ireland as comma separated values for the ChartJS chart.
+*   Data source: Our World in Data
+ */
+function getNIChartTotalFullyVaccinated()
+{
+    global $globalNIVaccineDataArray;
+    $vaccineData = $globalNIVaccineDataArray;
+
+    /* Loop through array and get totals */
+    foreach (array_slice($vaccineData, 1) as $vaccinesGiven) {
+        echo $vaccinesGiven[6];
+        echo ",";
     }
 }

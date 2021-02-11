@@ -144,6 +144,24 @@ $currentDate =  date('Y-m-d');
             // Source for rolling review/CMA data: https://www.ema.europa.eu/en/human-regulatory/overview/public-health-threats/coronavirus-disease-covid-19/treatments-vaccines/treatments-vaccines-covid-19-medicines-under-evaluation
         }
     </script>
+
+    <script>
+        window.Promise ||
+        document.write(
+            '<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"><\/script>'
+        )
+        window.Promise ||
+        document.write(
+            '<script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20171210/classList.min.js"><\/script>'
+        )
+        window.Promise ||
+        document.write(
+            '<script src="https://cdn.jsdelivr.net/npm/findindex_polyfill_mdn"><\/script>'
+        )
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 
 <body>
@@ -278,19 +296,19 @@ $currentDate =  date('Y-m-d');
         </div>
 
         <!-- Ireland Vaccine Tracker Chart -->
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="text-muted card-subtitle mb-2">Total vaccines administered by date reported<br></h6>
-                        <p class="card-text">
-                            <canvas id="VaccinationsByDate"></canvas>
-                            <b>Source:</b> Our World in Data
-                        </p>
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="text-muted card-subtitle mb-2">Total vaccines administered by date reported<br></h6>
+                                <p class="card-text">
+                                <div id="ROIVaccinationsChart"></div>
+                                <b>Source:</b> Our World in Data
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
         <!-- Ireland Vaccine Tracker Chart End -->
                 <br>
             </div>
@@ -383,31 +401,15 @@ $currentDate =  date('Y-m-d');
                             <div class="card-body">
                                 <h6 class="text-muted card-subtitle mb-2">Total vaccines administered by date reported<br></h6>
                                 <p class="card-text">
-                                    <canvas id="NIVaccinationsByDate"></canvas>
+                                <div id="NIVaccinationsChart"></div>
                                     <b>Source:</b> Our World in Data
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
+                <br>
                 <!-- N. Ireland Vaccine Tracker Chart End -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                NI Vaccine Data from GOV.UK updated on <?php echo getNIDataPublishDate(); ?>
             </div>
             <!-- End of NI tab-content -->
 
@@ -463,81 +465,164 @@ $currentDate =  date('Y-m-d');
 
 <!-- Republic of Ireland - Vaccine Chart using OWID Data -->
 <script>
-    var ctx = document.getElementById('VaccinationsByDate').getContext('2d');
-    var ROIChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: [<?php getChartVaccinationDates(); ?>],
-            datasets: [
-
-                {
-                    label: 'Vaccines Administered',
-                    data: [<?php getChartTotalVaccinations(); ?>],
-                    backgroundColor: [
-                        'rgba(0, 191, 243, 0.2)',
-
-                    ],
-                    borderColor: [
-                        'rgba(0, 0, 0, 1)',
-
-                    ],
-                    borderWidth: 1.2
-                }]
+    var options = {
+        series: [{
+            name: 'Total vaccinations',
+            data: [<?php getChartTotalVaccinations(); ?>]
+        }, {
+            name: 'Total fully vaccinated',
+            data: [<?php getChartTotalFullyVaccinations(); ?>],
+        }],
+        chart: {
+            height: 480,
+            type: 'area'
         },
-        options: {
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth'
+        },
+        /* Options for mobile devices. If you display too many x-axis labels it gets fairly messy. */
+        /* x-axis docs: https://apexcharts.com/docs/options/xaxis/ */
+        responsive: [{
+            breakpoint: 480,
+            options: {
+                chart: {
+                    height: '300px'
+                },
+                xaxis: {
+                    tickAmount: 7,
+                },
+                yaxis: {
+                    tickAmount: 5,
+                },
+                markers: {
+                    size: 0,
 
-            elements: {},
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
+                },
+                stroke: {
+                    curve: 'smooth',
+                    width: 2,
+
+                },
+            }
+        }],
+        /*
+        annotations: {
+            xaxis: [{
+                x: '08-Feb-2021',
+                strokeDashArray: 0,
+                borderColor: '#775DD0',
+                label: {
+                    borderColor: '#775DD0',
+                    style: {
+                        color: '#fff',
+                        background: '#775DD0',
+                    },
+                    text: 'AztraZeneca Rollout Begins',
+                }
+            }]
+        },*/
+        /* Mobile options end */
+        labels: [<?php getChartVaccinationDates(); ?>],
+        tooltip: {
+            y: {
+                /* Add comma separator. e.g. 1000 -> 1,000 */
+                formatter: function (y) {
+                    if (y >= 1000){
+                        return y.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     }
-                }]
-            },
+                    return y;
 
+                }
+            }
         },
+    };
 
-    });
-
+    var chart = new ApexCharts(document.querySelector("#ROIVaccinationsChart"), options);
+    chart.render();
 </script>
+
 <!-- Northern Ireland - Vaccine Chart using OWID Data -->
 <script>
-    var ctx = document.getElementById('NIVaccinationsByDate').getContext('2d');
-    var ROIChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: [<?php getNIChartVaccinationDates(); ?>],
-            datasets: [
-
-                {
-                    label: 'Vaccines Administered',
-                    data: [<?php getNIChartTotalVaccinations(); ?>],
-                    backgroundColor: [
-                        'rgba(0, 191, 243, 0.2)',
-
-                    ],
-                    borderColor: [
-                        'rgba(0, 0, 0, 1)',
-
-                    ],
-                    borderWidth: 1.2
-                }]
+    var options = {
+        series: [{
+            name: 'Total vaccinations',
+            data: [<?php getNIChartTotalVaccinations(); ?>]
+        }, {
+            name: 'Total fully vaccinated',
+            data: [<?php getNIChartTotalFullyVaccinated() ?>],
+        }],
+        chart: {
+            height: 480,
+            type: 'area'
         },
-        options: {
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth'
+        },
+        /* Options for mobile devices. If you display too many x-axis labels it gets fairly messy. */
+        /* x-axis docs: https://apexcharts.com/docs/options/xaxis/ */
+        responsive: [{
+            breakpoint: 480,
+            options: {
+                chart: {
+                    height: '300px'
+                },
+                xaxis: {
+                    tickAmount: 7,
+                },
+                yaxis: {
+                    tickAmount: 5,
+                },
+                markers: {
+                    size: 0,
 
-            elements: {},
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
+                },
+                stroke: {
+                    curve: 'smooth',
+                    width: 2,
+
+                },
+            }
+        }],
+        /*
+        annotations: {
+            xaxis: [{
+                x: '08-Feb-2021',
+                strokeDashArray: 0,
+                borderColor: '#775DD0',
+                label: {
+                    borderColor: '#775DD0',
+                    style: {
+                        color: '#fff',
+                        background: '#775DD0',
+                    },
+                    text: 'AztraZeneca Rollout Begins',
+                }
+            }]
+        },*/
+        /* Mobile options end */
+        labels: [<?php getNIChartVaccinationDates(); ?>],
+        tooltip: {
+            y: {
+                /* Add comma separator. e.g. 1000 -> 1,000 */
+                formatter: function (y) {
+                    if (y >= 1000){
+                        return y.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     }
-                }]
-            },
+                    return y;
 
+                }
+            }
         },
+    };
 
-    });
-
+    var chart = new ApexCharts(document.querySelector("#NIVaccinationsChart"), options);
+    chart.render();
 </script>
 <!-- Modal -->
 <div class="modal fade" id="dataSourceModal" tabindex="-1" role="dialog" aria-labelledby="dataSourceModal" aria-hidden="true">
