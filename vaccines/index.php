@@ -311,7 +311,7 @@ $currentDate =  date('Y-m-d');
 
                 <!-- Ireland Vaccine Manufacturers -->
                 <div class="row">
-                    <div class="col">
+                    <div class="col-sm">
                         <div class="card">
                             <div class="card-body">
                                 <h6 class="text-muted card-subtitle mb-2">Vaccinations by manufacturer<br></h6>
@@ -324,7 +324,7 @@ $currentDate =  date('Y-m-d');
                     </div>
 
 
-                    <div class="col">
+                    <div class="col-sm">
                         <div class="card">
                             <div class="card-body">
                                 <h6 class="text-muted card-subtitle mb-2">Vaccinations by cohort <a href="#vaccineCohortInfoModal" data-toggle="modal" data-target="#vaccineCohortInfoModal"><i class="fas fa-info-circle"></i></a><br></h6>
