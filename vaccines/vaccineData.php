@@ -112,7 +112,7 @@ function getLatestVaccineData()
 
 }
 
-/*  Returns the total vaccinations as comma separated values for the ChartJS chart.
+/*  Returns the total vaccinations as comma separated values for the chart.
  */
 function getChartTotalVaccinations()
 {
@@ -126,7 +126,7 @@ function getChartTotalVaccinations()
     }
 }
 
-/*  Returns the total number of people fully vaccinated as comma separated values for the ChartJS chart.
+/*  Returns the total number of people fully vaccinated as comma separated values for the chart.
  */
 function getChartTotalFullyVaccinations()
 {
@@ -312,7 +312,7 @@ function getNITotalVaccinations(){
 
 }
 
-/*  Returns the total Northern Irish vaccinations as comma separated values for the ChartJS chart.
+/*  Returns the total Northern Irish vaccinations as comma separated values for the chart.
 *   Data source: Our World in Data
  */
 function getNIChartTotalVaccinations()
@@ -327,7 +327,7 @@ function getNIChartTotalVaccinations()
     }
 }
 
-/*  Returns the Northehrn Irish vaccine dates as comma separated values for the ChartJS chart.
+/*  Returns the Northehrn Irish vaccine dates as comma separated values for the chart.
 *   Data source: Our World in Data
  */
 function getNIChartVaccinationDates()
@@ -344,7 +344,7 @@ function getNIChartVaccinationDates()
     }
 }
 
-/*  Returns the total number of people fully vaccinated in Northern Ireland as comma separated values for the ChartJS chart.
+/*  Returns the total number of people fully vaccinated in Northern Ireland as comma separated values for the chart.
 *   Data source: Our World in Data
  */
 function getNIChartTotalFullyVaccinated()
