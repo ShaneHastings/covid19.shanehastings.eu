@@ -308,6 +308,23 @@ $currentDate =  date('Y-m-d');
                 </div>
         <!-- Ireland Vaccine Tracker Chart End -->
                 <br>
+
+                <!-- Ireland Vaccine Manufacturers -->
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="text-muted card-subtitle mb-2">Vaccinations by manufacturer<br></h6>
+                                <p class="card-text">
+                                <div id="ROIVaccineManufacturerChart"></div>
+                                <b>Source:</b> COVID-19 Data Hub
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ireland Vaccine Manufacturers End -->
+                <br>
             </div>
             <!-- End of ROI tab-content -->
 
@@ -459,6 +476,66 @@ $currentDate =  date('Y-m-d');
 
 
 <!-- Charts -->
+<!-- Republic of Ireland - Vaccine Manufacturer Chart -->
+<script>
+    var options = {
+        series: [{
+            name: 'Vaccinations',
+            data: [<?php echo getGeoHiveVaccineTotalsByManufacturer("pf"); ?>, <?php echo getGeoHiveVaccineTotalsByManufacturer("modern"); ?>, 0],
+
+
+        }],
+        colors:['#008FFB', '#00E396', '#F44336'],
+        chart: {
+            type: 'bar',
+            height: 350
+
+        },
+        plotOptions: {
+            bar: {
+                horizontal: false,
+                columnWidth: '55%',
+                endingShape: 'rounded'
+            },
+        },
+        dataLabels: {
+            enabled: false,
+
+        },
+        stroke: {
+            show: true,
+            width: 2,
+            colors: ['transparent']
+        },
+        xaxis: {
+            categories: ["Pfizer/BioNTech" , "Moderna", "AstraZeneca"],
+        },
+        yaxis: {
+            title: {
+                text: 'Vaccines administered'
+            }
+        },
+        fill: {
+            opacity: 1
+        },
+        tooltip: {
+            y: {
+                /* Add comma separator. e.g. 1000 -> 1,000 */
+                formatter: function (y) {
+                    if (y >= 1000){
+                        return y.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    }
+                    return y;
+
+                }
+            }
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#ROIVaccineManufacturerChart"), options);
+    chart.render();
+
+</script>
 
 <!-- Republic of Ireland - Vaccine Chart using OWID Data -->
 <script>
