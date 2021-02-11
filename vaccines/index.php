@@ -322,6 +322,19 @@ $currentDate =  date('Y-m-d');
                             </div>
                         </div>
                     </div>
+
+
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="text-muted card-subtitle mb-2">Vaccinations by cohort <a href="#vaccineCohortInfoModal" data-toggle="modal" data-target="#vaccineCohortInfoModal"><i class="fas fa-info-circle"></i></a><br></h6>
+                                <p class="card-text">
+                                <div id="ROICohortChart"></div>
+                                <b>Source:</b> COVID-19 Data Hub
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- Ireland Vaccine Manufacturers End -->
                 <br>
@@ -476,6 +489,69 @@ $currentDate =  date('Y-m-d');
 
 
 <!-- Charts -->
+
+<!-- Republic of Ireland - Vaccine Manufacturer Chart -->
+<script>
+    var options = {
+        series: [{
+            name: 'Vaccinations',
+            data: [<?php echo getGeoHiveVaccineTotalsByCohort("totalcoh1"); ?>, <?php echo getGeoHiveVaccineTotalsByCohort("totalcoh2"); ?>, <?php echo getGeoHiveVaccineTotalsByCohort("totalcoh16"); ?>]
+
+
+        }],
+        colors:['#008FFB', '#00E396', '#F44336'],
+        chart: {
+            type: 'bar',
+            height: 350
+
+        },
+        plotOptions: {
+            bar: {
+                horizontal: false,
+                distributed: true,
+                columnWidth: '55%',
+                endingShape: 'rounded'
+            },
+        },
+        dataLabels: {
+            enabled: false,
+
+        },
+        stroke: {
+            show: true,
+            width: 2,
+            colors: ['transparent']
+        },
+        xaxis: {
+            categories: ["65+ in LTRC" , "Frontline HCW", "Others"],
+        },
+        yaxis: {
+            title: {
+                text: 'Vaccines administered'
+            }
+        },
+        fill: {
+            opacity: 1
+        },
+        tooltip: {
+            y: {
+                /* Add comma separator. e.g. 1000 -> 1,000 */
+                formatter: function (y) {
+                    if (y >= 1000){
+                        return y.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    }
+                    return y;
+
+                }
+            }
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#ROICohortChart"), options);
+    chart.render();
+
+</script>
+
 <!-- Republic of Ireland - Vaccine Manufacturer Chart -->
 <script>
     var options = {
@@ -494,6 +570,7 @@ $currentDate =  date('Y-m-d');
         plotOptions: {
             bar: {
                 horizontal: false,
+                distributed: true,
                 columnWidth: '55%',
                 endingShape: 'rounded'
             },
@@ -723,6 +800,29 @@ $currentDate =  date('Y-m-d');
                 <b>Population Figures</b><br>
                 <li>Ireland (<?php echo number_format($populationIreland); ?>)</li>
                 <li>Northern Ireland (<?php echo number_format($populationNorthernIreland); ?>)</li>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="vaccineCohortInfoModal" tabindex="-1" role="dialog" aria-labelledby="vaccineCohortInfoModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dataSourceModalLabel">Vaccine Cohorts</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <B>65+ in LTRC (Cohort 1)</B><br>
+                <li>Cohort 1 includes people aged 65 years and older, who are residents of long-term care facilities (likely to include all staff and residents on site).</li>
+                <B>Frontline Healthcare Workers (Cohort 2)</B><br>
+                <li>Cohort 2 includes frontline healthcare workers</li>
+                <B>Others</B><br>
+                <li>Other refers to all other groups.</li>
+                <hr>
+                Source: <a href="https://covid-19.geohive.ie/pages/vaccinations" target="_blank">COVID-19 Data Hub</a>
             </div>
         </div>
     </div>
