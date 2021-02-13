@@ -20,7 +20,8 @@ $northernIrelandVaccinationRatePer100 = ((getNITotalVaccinations()/$populationNo
 $currentDate =  date('Y-m-d');
 
 /* Value used for the vaccine estimator */
-$ECDCVaccinesDistributed = 24403868;
+//$ECDCVaccinesDistributed = 24403868; 12/02/21
+$ECDCVaccinesDistributed = 25676459; //13/02/21
 ?>
 
 <!DOCTYPE html>
@@ -544,7 +545,7 @@ $ECDCVaccinesDistributed = 24403868;
         <!-- Vaccine Tracker End-->
 
         <br>
-        
+
 
     </div> <!-- container end -->
 </div>
