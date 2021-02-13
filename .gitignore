@@ -6,6 +6,7 @@ assets-home/
 cases/
 giveback/
 twitterCovid/
+vaccines/json/historical/
 
 # These files
 app.yaml
