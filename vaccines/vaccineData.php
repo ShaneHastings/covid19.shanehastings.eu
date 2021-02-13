@@ -374,3 +374,19 @@ function getNIChartTotalFullyVaccinated()
         echo ",";
     }
 }
+
+/*  Vaccine distribution statistics
+ *
+ */
+
+function getEstimatedDeliveredDoses($totalECDCDeliveries){
+
+    /* Source: Eurostat, 2021 (https://ec.europa.eu/eurostat/databrowser/view/tps00001/default/table?lang=en)
+                EU27 +  Norway and Iceland = 453,437,923*/
+    $irelandProportionOfEUEEAPopulation = 0.010947119;
+
+    $estimatedDeliveries = $totalECDCDeliveries * $irelandProportionOfEUEEAPopulation;
+    return $estimatedDeliveries;
+
+
+}
