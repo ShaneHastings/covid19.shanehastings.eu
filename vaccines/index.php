@@ -18,6 +18,8 @@ $populationNorthernIreland = 1893700;
 $northernIrelandVaccinationRatePer100 = ((getNITotalVaccinations()/$populationNorthernIreland)*100);
 
 $currentDate =  date('Y-m-d');
+
+/* Value used for the vaccine estimator */
 $ECDCVaccinesDistributed = 24403868;
 ?>
 
@@ -352,7 +354,7 @@ $ECDCVaccinesDistributed = 24403868;
                                     <!-- Title -->
                                     <h6 class="card-title">Estimated vaccines delivered <a href="#estimatedDeliveryModal" data-toggle="modal" data-target="#estimatedDeliveryModal"><i class="fas fa-info-circle"></i></a></h6>
                                     <!-- Text -->
-                                    <p class="card-text red-text"><i class="fas fa-truck fa-2x"></i><span class="ml-2" style="font-size: 30px;"><?php echo number_format(getEstimatedDeliveredDoses("24403868")); ?></span>
+                                    <p class="card-text red-text"><i class="fas fa-truck fa-2x"></i><span class="ml-2" style="font-size: 30px;"><?php echo number_format(getEstimatedDeliveredDoses($ECDCVaccinesDistributed)); ?></span>
                                     </p>
                                 </div>
                                 <!-- Card content -->
