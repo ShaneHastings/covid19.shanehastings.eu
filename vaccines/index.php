@@ -314,7 +314,7 @@ $ECDCVaccinesDistributed = 24403868;
 
                 <!-- Ireland Vaccine Manufacturers -->
                 <div class="row">
-                    <div class="col-sm">
+                    <div class="col-sm-12 col-md-6">
                         <div class="card">
                             <div class="card-body">
                                 <h6 class="text-muted card-subtitle mb-2">Vaccinations by manufacturer<br></h6>
@@ -327,7 +327,7 @@ $ECDCVaccinesDistributed = 24403868;
                     </div>
 
 
-                    <div class="col-sm">
+                    <div class="col-sm-12 col-md-6">
                         <div class="card">
                             <div class="card-body">
                                 <h6 class="text-muted card-subtitle mb-2">Vaccinations by cohort <a href="#vaccineCohortInfoModal" data-toggle="modal" data-target="#vaccineCohortInfoModal"><i class="fas fa-info-circle"></i></a><br></h6>
@@ -544,6 +544,7 @@ $ECDCVaccinesDistributed = 24403868;
         <!-- Vaccine Tracker End-->
 
         <br>
+        
 
     </div> <!-- container end -->
 </div>
@@ -552,7 +553,9 @@ $ECDCVaccinesDistributed = 24403868;
 
 <!-- Charts -->
 
-<!-- Republic of Ireland - Vaccine Manufacturer Chart -->
+
+
+<!-- Republic of Ireland - Vaccine Cohort Chart -->
 <script>
     var options = {
         series: [{
@@ -598,7 +601,7 @@ $ECDCVaccinesDistributed = 24403868;
             }
         },
         responsive: [{
-            breakpoint: 800,
+            breakpoint: 850,
             options: {
                 chart: {
                     height: '300px'
@@ -686,14 +689,11 @@ $ECDCVaccinesDistributed = 24403868;
             }
         },
         responsive: [{
-            breakpoint: 800,
+            breakpoint: 650,
             options: {
                 chart: {
                     height: '300px'
                 },
-                dataLabels: {
-                    enabled: false,
-                }
 
             }
         }],
