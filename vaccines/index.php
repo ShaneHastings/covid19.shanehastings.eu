@@ -18,7 +18,7 @@ $populationNorthernIreland = 1893700;
 $northernIrelandVaccinationRatePer100 = ((getNITotalVaccinations()/$populationNorthernIreland)*100);
 
 $currentDate =  date('Y-m-d');
-
+$ECDCVaccinesDistributed = 24403868;
 ?>
 
 <!DOCTYPE html>
@@ -129,7 +129,8 @@ $currentDate =  date('Y-m-d');
             dataTable.addColumn({type: 'date', id: 'End'});
             dataTable.addRows([
                 ['Johnson & Johnson', 'Rolling Review', new Date("2020-12-01"), new Date("<?php echo $currentDate; ?>")],
-                ['Novavax', 'Rolling Review', new Date("2021-02-03"), new Date("<?php echo $currentDate; ?>")]]);
+                ['Novavax', 'Rolling Review', new Date("2021-02-03"), new Date("<?php echo $currentDate; ?>")],
+                    ['CureVac', 'Rolling Review', new Date("2021-02-12"), new Date("<?php echo $currentDate; ?>")]]);
 
             var options = {
                 timeline: {groupByRowLabel: true},
@@ -335,6 +336,65 @@ $currentDate =  date('Y-m-d');
                             </div>
                         </div>
                     </div>
+
+
+                </div>
+
+                <div class="row mt-3 pt-3">
+                    <div class="col-md">
+                        <!-- Card group -->
+                        <div class="card-group">
+
+                            <!-- Card -->
+                            <div class="card mb-4">
+                                <!-- Card content -->
+                                <div class="card-body">
+                                    <!-- Title -->
+                                    <h6 class="card-title">Estimated vaccines delivered <a href="#estimatedDeliveryModal" data-toggle="modal" data-target="#estimatedDeliveryModal"><i class="fas fa-info-circle"></i></a></h6>
+                                    <!-- Text -->
+                                    <p class="card-text red-text"><i class="fas fa-truck fa-2x"></i><span class="ml-2" style="font-size: 30px;"><?php echo number_format(getEstimatedDeliveredDoses("24403868")); ?></span>
+                                    </p>
+                                </div>
+                                <!-- Card content -->
+                            </div>
+                            <!-- Card -->
+                            <!-- Card -->
+                            <div class="card mb-4">
+                                <!-- Card content -->
+                                <div class="card-body">
+                                    <!-- Title -->
+                                    <h6 class="card-title">Estimated proportion used</h6>
+                                    <!-- Text -->
+                                    <p class="card-text green-text"><i class="fas fa-chart-pie fa-2x"></i><span class="ml-2"
+                                                                                                                 style="font-size: 30px;"><?php echo (round(getGeoHiveTotalVaccinations()/getEstimatedDeliveredDoses($ECDCVaccinesDistributed), 2))*100; ?>%</span> of delivered vaccines
+                                    </p>
+                                </div>
+                                <!-- Card content -->
+                            </div>
+                            <!-- Card -->
+
+                            <!-- Card -->
+                            <div class="card mb-4">
+                                <!-- Card content -->
+                                <div class="card-body">
+                                    <!-- Title -->
+                                    <h6 class="card-title">Vaccines delivered across EU</h6>
+                                    <!-- Text -->
+                                    <p class="card-text green-text"><i class="fas fa-globe-europe fa-2x"></i><span class="ml-2"
+                                                                                                                   style="font-size: 30px;"><?php echo number_format($ECDCVaccinesDistributed); ?></span>
+                                    </p>
+                                </div>
+                                <!-- Card content -->
+                            </div>
+                            <!-- Card -->
+                        </div>
+                        <!-- Card group -->
+                    </div>
+
+
+
+
+
                 </div>
                 <!-- Ireland Vaccine Manufacturers End -->
                 <br>
@@ -494,10 +554,11 @@ $currentDate =  date('Y-m-d');
 <script>
     var options = {
         series: [{
-            name: 'Vaccinations',
-            data: [<?php echo getGeoHiveVaccineTotalsByCohort("totalcoh1"); ?>, <?php echo getGeoHiveVaccineTotalsByCohort("totalcoh2"); ?>, <?php echo getGeoHiveVaccineTotalsByCohort("totalcoh16"); ?>]
-
-
+            name: 'First Dose',
+            data: [<?php echo getGeoHiveVaccineTotalsByCohort("cohort1"); ?>, <?php echo getGeoHiveVaccineTotalsByCohort("cohort2"); ?>, <?php echo getGeoHiveVaccineTotalsByCohort("othercohort1"); ?>]
+        }, {
+            name: 'Second Dose',
+            data: [<?php echo getGeoHiveVaccineTotalsByCohort("cohort1b"); ?>, <?php echo getGeoHiveVaccineTotalsByCohort("cohort2b"); ?>, <?php echo getGeoHiveVaccineTotalsByCohort("othercohort2"); ?>]
         }],
         colors:['#008FFB', '#00E396', '#F44336'],
         chart: {
@@ -510,13 +571,42 @@ $currentDate =  date('Y-m-d');
                 horizontal: false,
                 distributed: true,
                 columnWidth: '55%',
-                endingShape: 'rounded'
+                endingShape: 'rounded',
+                dataLabels: {
+                    position: 'top', // top, center, bottom
+                },
             },
         },
-        dataLabels: {
-            enabled: false,
-
+        legend: {
+            show: false
         },
+        dataLabels: {
+            enabled: true,
+            formatter: function (val) {
+                if (val >= 1000){
+                    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                }
+                return val;
+
+            },
+            offsetY: -20,
+            style: {
+                fontSize: '11px',
+                colors: ["#304758"]
+            }
+        },
+        responsive: [{
+            breakpoint: 800,
+            options: {
+                chart: {
+                    height: '300px'
+                },
+                dataLabels: {
+                    enabled: false,
+                }
+
+            }
+        }],
         stroke: {
             show: true,
             width: 2,
@@ -557,7 +647,7 @@ $currentDate =  date('Y-m-d');
     var options = {
         series: [{
             name: 'Vaccinations',
-            data: [<?php echo getGeoHiveVaccineTotalsByManufacturer("pf"); ?>, <?php echo getGeoHiveVaccineTotalsByManufacturer("modern"); ?>, 0],
+            data: [<?php echo getGeoHiveVaccineTotalsByManufacturer("pf"); ?>, <?php echo getGeoHiveVaccineTotalsByManufacturer("modern"); ?>, <?php echo getGeoHiveVaccineTotalsByManufacturer("az"); ?>,],
 
 
         }],
@@ -572,13 +662,39 @@ $currentDate =  date('Y-m-d');
                 horizontal: false,
                 distributed: true,
                 columnWidth: '55%',
-                endingShape: 'rounded'
+                endingShape: 'rounded',
+                dataLabels: {
+                    position: 'top', // top, center, bottom
+                },
             },
         },
         dataLabels: {
-            enabled: false,
+            enabled: true,
+            formatter: function (val) {
+                if (val >= 1000){
+                    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                }
+                return val;
 
+            },
+            offsetY: -20,
+            style: {
+                fontSize: '11px',
+                colors: ["#304758"]
+            }
         },
+        responsive: [{
+            breakpoint: 800,
+            options: {
+                chart: {
+                    height: '300px'
+                },
+                dataLabels: {
+                    enabled: false,
+                }
+
+            }
+        }],
         stroke: {
             show: true,
             width: 2,
@@ -828,6 +944,28 @@ $currentDate =  date('Y-m-d');
     </div>
 </div>
 
+<div class="modal fade" id="estimatedDeliveryModal" tabindex="-1" role="dialog" aria-labelledby="estimatedDeliveryModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dataSourceModalLabel">Estimated vaccines delivered</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                This estimation is derived from the total number of vaccines distributed by the EU to its member states (+ Norway and Iceland), which is published by the ECDC at the link below.
+                <br><br></br>Unfortunately, Ireland has not yet provided information to the ECDC on how many doses it has received. Therefore this estimate is calculated by using Ireland's population according to Eurostat, as a proportion of the EU+NO+IS population.
+                <hr>
+                <b>Population of EU+NO+IS: </b> <li>453,437,923</li>
+                <b>Ireland's population as a % of this:</b>  <li>1.0947119%</li>
+                <br><b>Estimated doses received: </b> <?php echo number_format(getEstimatedDeliveredDoses($ECDCVaccinesDistributed)); ?>
+                <hr>
+                Source: <a href="https://qap.ecdc.europa.eu/public/extensions/COVID-19/COVID-19.html#vaccine-tracker-tab" target="_blank">ECDC Vaccine Tracker</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="footer-basic" style="background-color: #f0f0f0">
     <footer>
