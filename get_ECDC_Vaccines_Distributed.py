@@ -1,3 +1,4 @@
+
 # ECDC Vaccine Distribution
 # Using Selenium and Chromedriver to scrape a dynamically updated website.
 
@@ -6,10 +7,18 @@ from bs4 import BeautifulSoup
 from selenium import webdriver 
 from selenium.webdriver.common.keys import Keys 
 import time
+from selenium.webdriver.chrome.options import Options
 
+# Setting up chrome as headless since this will be a cron script.
+# To run on Windows, change the value of path to the Chromedriver location, and remove "chrome_options = chrome_options"
+
+chrome_options = Options()
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-dev-shm-usage')
 ## Define Selenium location
-path = r'C:\Users\Hasti\Chromedriver\chromedriver.exe'
-driver = webdriver.Chrome(executable_path = path)
+path = r'/usr/bin/chromedriver'
+driver = webdriver.Chrome(executable_path = path,chrome_options=chrome_options)
 
 ## Dynamic webpage we want to grab data from (ECDC Vaccine Tracker Page)
 driver.get('https://qap.ecdc.europa.eu/public/extensions/COVID-19/COVID-19.html#vaccine-tracker-tab')
