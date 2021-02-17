@@ -779,7 +779,7 @@ $ECDCVaccinesDistributed = getECDCLatestDistributionFigure();;
                 },
             }
         }],
-/*
+
         annotations: {
             xaxis: [{
                 x: '09-Feb-2021',
@@ -795,7 +795,7 @@ $ECDCVaccinesDistributed = getECDCLatestDistributionFigure();;
                     text: 'AztraZeneca Rollout',
                 }
             }]
-        },*/
+        },
         /* Mobile options end */
         labels: [<?php getChartVaccinationDates(); ?>],
         tooltip: {
