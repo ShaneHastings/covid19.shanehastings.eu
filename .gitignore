@@ -7,6 +7,7 @@ cases/
 giveback/
 twitterCovid/
 vaccines/json/historical/
+vaccines/json/ecdc/
 
 # These files
 app.yaml
@@ -14,3 +15,4 @@ chart.png
 index.html
 social.png
 error_log.txt
+vaccines/updateECDCDataTable.php
