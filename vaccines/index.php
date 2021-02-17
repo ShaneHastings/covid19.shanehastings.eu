@@ -130,7 +130,8 @@ $ECDCVaccinesDistributed = getECDCLatestDistributionFigure();;
             dataTable.addColumn({type: 'date', id: 'Start'});
             dataTable.addColumn({type: 'date', id: 'End'});
             dataTable.addRows([
-                ['Johnson & Johnson', 'Rolling Review', new Date("2020-12-01"), new Date("<?php echo $currentDate; ?>")],
+                ['Johnson & Johnson', 'Rolling Review', new Date("2020-12-01"), new Date("2021-02-16")],
+                ['Johnson & Johnson', 'Conditional Marketing Authorisation - Under Review', new Date("2021-02-16"), new Date("<?php echo $currentDate; ?>")],
                 ['Novavax', 'Rolling Review', new Date("2021-02-03"), new Date("<?php echo $currentDate; ?>")],
                     ['CureVac', 'Rolling Review', new Date("2021-02-12"), new Date("<?php echo $currentDate; ?>")]]);
 
