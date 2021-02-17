@@ -34,6 +34,7 @@ $ourWorldInData_Ireland = "https://covid19.shanehastings.eu/vaccines/datasets/ro
 $ourWorldInData_NorthernIreland = "https://covid19.shanehastings.eu/vaccines/datasets/niVaccineDataOWID.csv";
 $geoHiveVaccineAPI = "https://covid19.shanehastings.eu/vaccines/datasets/roiVaccineData.json";
 $northernIrelandGovUK = "https://covid19.shanehastings.eu/vaccines/datasets/niVaccineData.json";
+$ecdcDataSource = "https://covid19.shanehastings.eu/vaccines/json/ecdc/";
 
 
 /* Grab GOV.UK data for Northern Ireland */
@@ -47,6 +48,9 @@ $globalVaccineDataArray = getVaccineDataFromCSV();
 
 /* Grab NI data from github once to prevent multiple requests. */
 $globalNIVaccineDataArray = getNIVaccineDataFromCSV();
+
+/* Grab ECDC Vaccine Data*/
+$ecdcVaccineDataArray = getECDCVaccinationDistributionData();
 
 /*  Our World in Data Vaccine Sources */
 
@@ -343,6 +347,7 @@ function getNIChartTotalVaccinations()
     }
 }
 
+
 /*  Returns the Northehrn Irish vaccine dates as comma separated values for the chart.
 *   Data source: Our World in Data
  */
@@ -390,3 +395,28 @@ function getEstimatedDeliveredDoses($totalECDCDeliveries){
 
 
 }
+
+/*  Get the latest ECDC Data on vaccines distributed to its member states
+ */
+function getECDCVaccinationDistributionData(){
+
+    global $ecdcDataSource;
+    $ecdcJson = file_get_contents($ecdcDataSource);
+    $ecdcJsonObject = json_decode($ecdcJson, true);
+
+    return $ecdcJsonObject;
+
+}
+
+function getECDCLatestDistributionFigure(){
+
+    global $ecdcVaccineDataArray;
+    $sizeOfArray = sizeof($ecdcVaccineDataArray['ECDC_Data']);
+    $keyOfLatestData = $sizeOfArray - 1;
+    $latestVaccineDistribution = $ecdcVaccineDataArray['ECDC_Data'][$keyOfLatestData]['vaccinesDistributed'];
+
+    return $latestVaccineDistribution;
+
+
+}
+

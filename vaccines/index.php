@@ -20,8 +20,7 @@ $northernIrelandVaccinationRatePer100 = ((getNITotalVaccinations()/$populationNo
 $currentDate =  date('Y-m-d');
 
 /* Value used for the vaccine estimator */
-//$ECDCVaccinesDistributed = 24403868; 12/02/21
-$ECDCVaccinesDistributed = 25676459; //13/02/21
+$ECDCVaccinesDistributed = getECDCLatestDistributionFigure();;
 ?>
 
 <!DOCTYPE html>
@@ -301,10 +300,11 @@ $ECDCVaccinesDistributed = 25676459; //13/02/21
                     <div class="col">
                         <div class="card">
                             <div class="card-body">
-                                <h6 class="text-muted card-subtitle mb-2">Total vaccines administered by date reported<br></h6>
+                                <h6 class="text-muted card-subtitle mb-2">Total vaccines administered by date  <br></h6>
                                 <p class="card-text">
                                 <div id="ROIVaccinationsChart"></div>
-                                <b>Source:</b> Our World in Data
+                                <b>Source:</b> Our World in Data |
+                                <a onclick="clearAnnotations();"><i class="fas fa-comment-slash"></i> Remove annotations</a>
                                 </p>
                             </div>
                         </div>
@@ -778,10 +778,10 @@ $ECDCVaccinesDistributed = 25676459; //13/02/21
                 },
             }
         }],
-        /*
+/*
         annotations: {
             xaxis: [{
-                x: '08-Feb-2021',
+                x: '09-Feb-2021',
                 strokeDashArray: 0,
                 borderColor: '#775DD0',
                 label: {
@@ -790,7 +790,8 @@ $ECDCVaccinesDistributed = 25676459; //13/02/21
                         color: '#fff',
                         background: '#775DD0',
                     },
-                    text: 'AztraZeneca Rollout Begins',
+                    orientation: "horizontal",
+                    text: 'AztraZeneca Rollout',
                 }
             }]
         },*/
@@ -810,8 +811,13 @@ $ECDCVaccinesDistributed = 25676459; //13/02/21
         },
     };
 
-    var chart = new ApexCharts(document.querySelector("#ROIVaccinationsChart"), options);
-    chart.render();
+    var chartROIVax = new ApexCharts(document.querySelector("#ROIVaccinationsChart"), options);
+    chartROIVax.render();
+
+    function clearAnnotations(){
+        chartROIVax.clearAnnotations()
+    }
+
 </script>
 
 <!-- Northern Ireland - Vaccine Chart using OWID Data -->
