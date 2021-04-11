@@ -1,0 +1,24 @@
+/** Custom CSS Changes for dark mode with the Android Theme Set
+    COVID-19 Data Ireland | Shane Hastings
+
+    April 2021
+*/
+
+
+.card--material h1{
+    color: #FFFFFF;
+}
+
+.card--material p{
+    color: #FFFFFF;
+}
+
+.card--material headlinefigure{
+    color: #FFFFFF;
+}
+
+.list-header--material{
+    color: #FFFFFF;
+}
+
+/*.card--material__title{ text-transform: capitalize; }*/
