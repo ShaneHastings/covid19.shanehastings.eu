@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+
+<url>
+  <loc>https://covid19.shanehastings.eu/</loc>
+  <lastmod>2021-04-10T21:03:58+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://covid19.shanehastings.eu/cases/</loc>
+  <lastmod>2021-04-10T21:03:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19.shanehastings.eu/api/swabs/</loc>
+  <lastmod>2021-04-10T21:03:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19.shanehastings.eu/vaccines/</loc>
+  <lastmod>2021-04-10T21:03:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19.shanehastings.eu/mobility/</loc>
+  <lastmod>2021-04-10T21:03:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19.shanehastings.eu/resources/</loc>
+  <lastmod>2021-04-10T21:03:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19.shanehastings.eu/giveback/</loc>
+  <lastmod>2021-04-10T21:03:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://covid19.shanehastings.eu/api/swabs/alltime.php</loc>
+  <lastmod>2021-04-10T21:03:58+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
